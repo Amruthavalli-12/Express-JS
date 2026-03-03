@@ -1,0 +1,17 @@
+const express=require("express");
+const session=require("express-session");
+const cookieParser=require("cookie-parser");
+const app=express();
+app.use(cookieParser());
+app.use(session({
+    secret:"mySecretKey",
+    resave:false,
+    saveUninitialized:true
+}));
+app.get("/",(req,res)=>{
+    res.send("Welcome!Go to/Login to start session.");
+});
+app.get("/login",(req,res)=>{
+    req.session.username="Supri";
+    res.send("Session created")
+})
